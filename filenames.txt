@@ -1,0 +1,2 @@
+lowercase_sentences.txt
+uppercase.txt
