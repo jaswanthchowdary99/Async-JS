@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const absolutePath = '../asynchronousDrill1';
+const relativePath = '../asynchronousDrill1';
 
 // 1: Read the given file lipsum.txt
 
@@ -84,7 +84,7 @@ function deleteFiles(fileList, filePath, callback) {
         }
     });
 }
-function problem2 (absolutePath){
+function problem2 (relativePath){
 readFile((data, filePath) => {
     if (data) {
         writeUppercaseToFile(data, filePath, (uppercaseFileName, filePath) => {

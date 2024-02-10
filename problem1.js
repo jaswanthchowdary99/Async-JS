@@ -1,13 +1,13 @@
 const fs = require('fs');
 const path = require('path');
-const absolutePath = '../asynchronousDrill1';
+const relativePath = '../asynchronousDrill1';
 
-function createFile(absolutePath, randomNumber, callback) {
+function createFile(relativePath, randomNumber, callback) {
   let filesCreated = 0;
 
   for (let index = 0; index <= randomNumber; index++) {
     const file = `file${index}.json`;
-    const filePath = path.join(absolutePath, file);
+    const filePath = path.join(relativePath, file);
 
     fs.writeFile(filePath, file, function (err) {
       if (err) {
@@ -24,12 +24,12 @@ function createFile(absolutePath, randomNumber, callback) {
   }
 }
 
-function deleteFile(absolutePath, randomNumber, callback) {
+function deleteFile(relativePath, randomNumber, callback) {
   let filesDeleted = 0;
 
   for (let index1 = 0; index1 <= randomNumber; index1++) {
     const file2 = `file${index1}.json`;
-    const filePath2 = path.join(absolutePath, file2);
+    const filePath2 = path.join(relativePath, file2);
 
     fs.unlink(filePath2, function (err) {
       if (err) {
@@ -46,10 +46,10 @@ function deleteFile(absolutePath, randomNumber, callback) {
   }
 }
 
-function problem1(absolutePath, randomNumber) {
-    createFile(absolutePath, randomNumber, function (data1, filePath1) {
+function problem1(relativePath, randomNumber) {
+    createFile(relativePath, randomNumber, function (data1, filePath1) {
         if (data1) {
-            deleteFile(absolutePath, randomNumber, function (data2, filePath2) {
+            deleteFile(relativePath, randomNumber, function (data2, filePath2) {
                 if (data2) {
                     console.log('All file operations completed!');
                 } else {
