@@ -8,9 +8,9 @@ function readFile(callback) {
     const filePath = 'lipsum.txt'; 
     fs.readFile(filePath, 'utf8', (err, data) => {
         if (err) {
-            console.error(`Error reading file `);
+            console.error(`ERRORR READING FILE `);
         } else {
-            console.log(`file read successful \n${filePath}\n`);
+            console.log(`FILE READ SUCCESSFULL \n${filePath}\n\n${data}\n`);
             callback(data, filePath); 
         }
     });
@@ -23,9 +23,9 @@ function writeUppercaseToFile(data, filePath, callback) {
 
     fs.writeFile(uppercaseFileName, uppercaseData, 'utf8', (err) => {
         if (err) {
-            console.error(`Error writing to file`(err));
+            console.error(`ERROR WRITING FILE`(err));
         } else {
-            console.log(`data changed to uppercase successfully \n${uppercaseData}\n`);
+            console.log(`DATA CHANGED TO UPPERCASE SUCCESSFULLY \n\n${uppercaseData}\n`);
             callback(uppercaseFileName, filePath); 
         }
     });
@@ -40,9 +40,9 @@ function writeLowercaseSentencesToFile(data, filePath, callback) {
 
         fs.writeFile(lowercaseFileName, sentences.join('\n'), 'utf8', (err) => {
             if (err) {
-                console.error(`Error writing to file`(err));
+                console.error(`ERROR WRITING FILE`(err));
             } else {
-                console.log(`data changed to lowercase successfully \n${lowercaseData}\n`);
+                console.log(`DATA CHANGED TO LOWERCASE SUCCESSFULLY \n\n${lowercaseData}\n`);
                 callback(lowercaseFileName, filePath); 
             }
         });
@@ -57,9 +57,9 @@ function sortAndWriteToFile(files, filePath, callback) {
 
     fs.writeFile(sortedFileName, sortedData, 'utf8', (err) => {
         if (err) {
-            console.error(`Error writing to file`(err));
+            console.error(`ERROR WRITING FILE`(err));
         } else {
-            console.log(`data sorted successfully \n${sortedData}\n`);
+            console.log(`DATA SORTED SUCCESSFULLY \n\n${sortedData}\n`);
             callback(sortedFileName, filePath); 
         }
     });
@@ -68,18 +68,19 @@ function sortAndWriteToFile(files, filePath, callback) {
 // 5: Read filenames.txt and delete all new files mentioned in the list
 function deleteFiles(fileList, filePath, callback) {
     fileList.forEach((fileName) => {
+        fileList.pop();
         if (fs.existsSync(fileName)) {
             fs.unlink(fileName, (err) => {
                 if (err) {
-                    console.error(`Error deleting file `);
+                    console.error(`ERROR WRITING FILE `);
                 } else {
-                    console.log('files deleted successfully');
+                    console.log(`FILES DELETED SUCCESSFULLY \n`);
                     callback(filePath); 
                 }
             });
         } else {
-            console.log(`File not found`);
-            callback(filePath); 
+            console.log(`FILE NOT FOUND`);
+            callback(filePath);
         }
     });
 }
@@ -90,13 +91,13 @@ readFile((data, filePath) => {
             writeLowercaseSentencesToFile(data, filePath, (lowercaseFileName, filePath) => {
                 sortAndWriteToFile([uppercaseFileName, lowercaseFileName], filePath, () => {
                     deleteFiles([uppercaseFileName, lowercaseFileName], filePath, () => {
-                        console.log('Process completed successfully.');
+                        console.log('PROCESS COMPLETED SUCCESSFULLY.\n');
                     });
                 });
             });
         });
     } else {
-        console.error(`Error reading `);
+        console.error(`ERRORR READING `);
     }
 });
 
