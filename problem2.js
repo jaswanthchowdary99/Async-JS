@@ -68,13 +68,13 @@ function sortAndWriteToFile(files, filePath, callback) {
 // 5: Read filenames.txt and delete all new files mentioned in the list
 function deleteFiles(fileList, filePath, callback) {
     fileList.forEach((fileName) => {
-        fileList.pop();
+        // fileList.pop();
         if (fs.existsSync(fileName)) {
             fs.unlink(fileName, (err) => {
                 if (err) {
                     console.error(`ERROR WRITING FILE `);
                 } else {
-                    console.log(`FILES DELETED SUCCESSFULLY \n`);
+                    console.log(`FILES DELETED SUCCESSFULLY \n${fileName}`);
                     callback(filePath); 
                 }
             });
